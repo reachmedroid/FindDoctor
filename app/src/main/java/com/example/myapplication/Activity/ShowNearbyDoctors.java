@@ -1,5 +1,6 @@
 package com.example.myapplication.Activity;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,7 @@ import com.example.myapplication.Models.DoctorsFeed;
 import com.example.myapplication.Models.PaginationItem;
 import com.example.myapplication.Models.SearchResultResponse;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,33 +34,37 @@ public class ShowNearbyDoctors  extends AppCompatActivity {
     ArrayList<String> rowsArrayList = new ArrayList<>();
     private List<PaginationItem> values = new ArrayList<>();
     boolean isLoading = false;
+    private ProgressDialog progressBar;
 
 
     private APIService restApiFactory;
     private Callback<SearchResultResponse> callback = new Callback<SearchResultResponse>() {
-                @Override
-                public void onResponse(Call<SearchResultResponse> call, Response<SearchResultResponse> response) {
-                    if (response.isSuccessful()) {
+        @Override
+        public void onResponse(Call<SearchResultResponse> call, Response<SearchResultResponse> response) {
+            progressBar.cancel();
+            if (response.isSuccessful()) {
 
-                        Log.e("Response Successful: ", " "+response.body().doctorsList);
+                Log.e("Response Successful: ", " "+response.body().doctorsList);
 
-                        List<DoctorsFeed> body = response.body().doctorsList;
-                        for (DoctorsFeed repo : body) {
-                            Log.e("Doctor Name ",""+repo.getName());
-                            values.add(new PaginationItem(repo.getId(), repo.getName()));
-                        }
-                        recyclerViewAdapter.notifyDataSetChanged();
-                        fetchReposNextPage(response);
-                    } else {
-                        Log.e("Request failed: ", " "+response);
-                    }
+                List<DoctorsFeed> body = response.body().doctorsList;
+                for (DoctorsFeed repo : body) {
+                    Log.e("Doctor Name ",""+repo.getName());
+                    //values.add(new PaginationItem(repo.getId(), repo.getName()));
+                    rowsArrayList.add(repo.getName());
                 }
+                recyclerViewAdapter.notifyDataSetChanged();
+                fetchReposNextPage(response);
+            } else {
+                Log.e("Request failed: ", " "+response);
+            }
+        }
 
-                @Override
-                public void onFailure(Call<SearchResultResponse> call, Throwable t) {
-                    Log.e("Error fetching repos", t.getMessage());
-                }
-            };
+        @Override
+        public void onFailure(Call<SearchResultResponse> call, Throwable t) {
+            progressBar.cancel();
+            Log.e("Error fetching repos", t.getMessage());
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,16 +72,17 @@ public class ShowNearbyDoctors  extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         Bundle bundle = getIntent().getExtras();
         initAdapter();
-         if(bundle.containsKey("SEARCH_TEXT")) {
-             String searchText = bundle.getString("SEARCH_TEXT");
-             initRestCall(searchText);
-             initScrollListener();
-         }
+        if(bundle.containsKey("SEARCH_TEXT")) {
+            startProgressDialogPopUp();
+            String searchText = bundle.getString("SEARCH_TEXT");
+            initRestCall(searchText);
+            initScrollListener();
+        }
     }
 
     private void initRestCall(String searchText) {
 
-        restApiFactory = RestApiFactory.createService(APIService.class,"Bearer",getCurrentAccessToken());
+        restApiFactory = RestApiFactory.createService(APIService.class,CommonUtils.AUTH_BEARER,getCurrentAccessToken(), CommonUtils.BASE_URL);
         Call<SearchResultResponse> call =  restApiFactory.findNearestDoctor();
         call.enqueue(callback);
     }
@@ -144,6 +151,13 @@ public class ShowNearbyDoctors  extends AppCompatActivity {
         return pref.getString("access_token","");
     }
 
+    private void startProgressDialogPopUp(){
+        progressBar = new ProgressDialog(ShowNearbyDoctors.this);
+        progressBar.setCancelable(false);
+        progressBar.setMessage("Loading nearby doctors ...");
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.show();
+    }
     private void fetchReposNextPage(Response<SearchResultResponse> response)
     {
         /*GitHubPagelinksUtils pagelinksUtils =

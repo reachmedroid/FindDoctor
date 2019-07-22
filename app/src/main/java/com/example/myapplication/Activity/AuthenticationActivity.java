@@ -1,5 +1,6 @@
 package com.example.myapplication.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.example.myapplication.API.APIService;
 import com.example.myapplication.API.RestApiFactory;
 import com.example.myapplication.Models.LoginResponse;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.CommonUtils;
 
 import butterknife.ButterKnife;
 import butterknife.BindView;
@@ -30,6 +32,7 @@ import retrofit2.Response;
 
 public class AuthenticationActivity extends AppCompatActivity {
     @BindView(R.id.btn_login) Button btnLogin;
+    private  ProgressDialog progressBar;
 
     private Callback<LoginResponse> callback;
 
@@ -37,10 +40,12 @@ public class AuthenticationActivity extends AppCompatActivity {
         callback = new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                progressBar.cancel();
                 if (response.isSuccessful()) {
 
                     Log.e("Response Successful: ", " " + response.body().access_token);
                     Log.e("Response Successful: ", " " + response.body().token_type);
+
                     saveAccessTokenPreference(response.body().access_token);
                     navigateToSearchDoctor();
                 } else {
@@ -51,6 +56,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                progressBar.cancel();
                 Log.e("Error fetching repos", t.getMessage());
                 Toast.makeText(AuthenticationActivity.this, "Login Failure", Toast.LENGTH_SHORT).show();
             }
@@ -74,6 +80,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startProgressDialogPopUp();
                 authenticateUsernamePassword();
             }
         });
@@ -89,19 +96,27 @@ public class AuthenticationActivity extends AppCompatActivity {
         finish();
     }
 
+    private void startProgressDialogPopUp(){
+        progressBar = new ProgressDialog(AuthenticationActivity.this);
+        progressBar.setCancelable(false);
+        progressBar.setMessage(getString(R.string.txt_authentication_user));
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.show();
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+
     /**
      * Responsible for authenticating the user
      * taking input of username & password.
      */
-
     private void authenticateUsernamePassword() {
-        APIService restApiFactory  = RestApiFactory.createService(APIService.class,"Basic", "aXBob25lOmlwaG9uZXdpbGxub3RiZXRoZXJlYW55bW9yZQ==");
-        Call<LoginResponse> call =  restApiFactory.authenticateUser("androidChallenge@vivy.com","88888888");
+        APIService restApiFactory  = RestApiFactory.createService(APIService.class,CommonUtils.AUTH_BASIC, CommonUtils.BASIC_AUTH_CHALLENGE, CommonUtils.OATH_URL);
+        Call<LoginResponse> call =  restApiFactory.authenticateUser(CommonUtils.USER_NAME,CommonUtils.PASSWORD);
         call.enqueue(callback);
     }
 }

@@ -2,4 +2,7 @@
     <string name="app_name">FindMyDoctor</string>
     <string name="screen_1_name">Login Screen</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="txt_authentication_user">Authenticating user ...</string>
 </resources>
