@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FindMyDoctor</string>
+    <string name="screen_1_name">Login Screen</string>
+    <string name="action_settings">Settings</string>
+</resources>
