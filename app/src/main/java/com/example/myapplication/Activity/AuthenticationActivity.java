@@ -50,7 +50,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                     navigateToSearchDoctor();
                 } else {
                     Log.e("Request failed: ", " " + response);
-                    Toast.makeText(AuthenticationActivity.this, "Login Failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AuthenticationActivity.this, getString(R.string.txt_login_failure), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -58,15 +58,15 @@ public class AuthenticationActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 progressBar.cancel();
                 Log.e("Error fetching repos", t.getMessage());
-                Toast.makeText(AuthenticationActivity.this, "Login Failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AuthenticationActivity.this, getString(R.string.txt_login_failure), Toast.LENGTH_SHORT).show();
             }
         };
     }
 
     private void saveAccessTokenPreference(String accessToken) {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("ACCESS_PREFERENCE", 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(CommonUtils.PREFERENCE_FILE, 0);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("access_token", accessToken);
+        editor.putString(CommonUtils.SAVED_ACCESS_NAME, accessToken);
         editor.commit();
     }
 

@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Models.DoctorsFeed;
+import com.example.myapplication.Models.PaginationItem;
 import com.example.myapplication.R;
 
 import java.util.List;
@@ -19,9 +21,9 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
-    public List<String> mItemList;
+    public List<DoctorsFeed> mItemList;
 
-    public SearchResultViewAdapter(List<String> itemList) {
+    public SearchResultViewAdapter(List<DoctorsFeed> itemList) {
 
         mItemList = itemList;
     }
@@ -42,7 +44,6 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ItemViewHolder) {
-
             populateItemRows((ItemViewHolder) holder, position);
         } else if (holder instanceof LoadingViewHolder) {
             showLoadingView((LoadingViewHolder) holder, position);
@@ -70,11 +71,12 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private class ItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvItem;
+        TextView tvDoctorAddress;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            tvItem = itemView.findViewById(R.id.tvItem);
+            tvItem = itemView.findViewById(R.id.tvDoctorName);
+            tvDoctorAddress= itemView.findViewById(R.id.tvDoctorAddress);
         }
     }
 
@@ -95,8 +97,10 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private void populateItemRows(ItemViewHolder viewHolder, int position) {
 
-        String item = mItemList.get(position);
-        viewHolder.tvItem.setText(item);
+        viewHolder.tvItem.setText(mItemList.get(position).getName());
+        viewHolder.tvDoctorAddress.setText(mItemList.get(position).getAddress());
+
+
 
     }
 

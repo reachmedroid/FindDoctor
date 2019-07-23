@@ -42,8 +42,13 @@ public interface APIService {
                                 @Query("pageSize") int pageSize);
 
 
-    @GET("api/users/me/doctors?search=Fritzhof&lat=52.534709&lng=13.3976972")
-    Call<SearchResultResponse> findNearestDoctor();
+    @GET("api/users/me/doctors?lat=52.534709&lng=13.3976972")
+    Call<SearchResultResponse> findNearestDoctor(@Query("search") String searchText);
+
+
+    @GET("api/users/me/doctors?lat=52.534709&lng=13.3976972")
+    Call<SearchResultResponse> fetchMoreDoctorsData(@Query("search") String searchText,
+                                                    @Query("lastKey") String lastKey);
 
 
 }

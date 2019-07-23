@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
-        android:text="Search"/>
+        android:text="@string/txt_search"/>
 
     <EditText
         android:id="@+id/searchText"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_toLeftOf="@+id/btn_search"
-        android:hint="Search Doctor"/>
+        android:hint="@string/txt_input_hint"/>
 
     <TextView
         android:id="@+id/tvSearchText"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:text="Find your Doctor"
+        android:hint="@string/txt_doctor_search"
         android:textSize="35dp" />
 
 </RelativeLayout>

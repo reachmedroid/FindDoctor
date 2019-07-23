@@ -1,8 +1,17 @@
 <resources>
-    <string name="app_name">FindMyDoctor</string>
+    <string name="app_name">Find Doctor</string>
     <string name="screen_1_name">Login Screen</string>
     <string name="action_settings">Settings</string>
 
 
     <string name="txt_authentication_user">Authenticating user ...</string>
+    <string name="txt_login_failure">Login Failure</string>
+    <string name="txt_doctor_search">Search Doctor</string>
+    <string name="txt_search">Search</string>
+
+    <string name="txt_loading_doctors">Loading nearby doctors ...</string>
+    <string name="txt_missing_doctor_name">Please enter the doctor name</string>
+    <string name="txt_no_doctors">No Doctors found,Please search again</string>
+    <string name="txt_input_hint">Enter characters more than 3</string>
+
 </resources>

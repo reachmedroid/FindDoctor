@@ -2,19 +2,17 @@ package com.example.myapplication.Models;
 
 public class DoctorsFeed {
 
-    String id;
+    String address;
     String name;
     String photoId;
     String rating;
 
-    public DoctorsFeed(String id, String name) {
-        this.id = id;
+    public DoctorsFeed( String name,String address) {
+        this.address = address;
         this.name = name;
     }
 
-    public String getId() {
-        return id;
-    }
+
 
     public String getName() {
         return name;
@@ -32,12 +30,10 @@ public class DoctorsFeed {
         return address;
     }
 
-    String address;
-
     @Override
     public String toString() {
         return "DoctorsFeed{" +
-                "id='" + id + '\'' +
+                "address='" + address + '\'' +
                 ", name='" + name + '\'' +
                 ", photoId='" + photoId + '\'' +
                 ", rating='" + rating + '\'' +

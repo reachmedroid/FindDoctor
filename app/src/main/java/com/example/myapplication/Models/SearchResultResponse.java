@@ -10,4 +10,7 @@ public class SearchResultResponse {
     public String refreshToken;
     @SerializedName("doctors")
     public List<DoctorsFeed> doctorsList;
+    @SerializedName("lastKey")
+    public String nextKey;
+
 }

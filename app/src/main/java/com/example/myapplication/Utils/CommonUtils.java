@@ -13,5 +13,9 @@ public class CommonUtils
     public static final String PASSWORD="88888888";
     public static final String AUTH_BASIC="Basic";
     public static final String AUTH_BEARER="Bearer";
+    public static final String PREFERENCE_FILE="ACCESS_PREFERENCE";
+    public static final String SAVED_ACCESS_NAME="access_token";
+    public static final String BUNDEL_SEARCH_TEXT="SEARCH_TEXT";
+
 
 }
