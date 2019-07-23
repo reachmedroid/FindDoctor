@@ -12,6 +12,6 @@
     <string name="txt_loading_doctors">Loading nearby doctors ...</string>
     <string name="txt_missing_doctor_name">Please enter the doctor name</string>
     <string name="txt_no_doctors">No Doctors found,Please search again</string>
-    <string name="txt_input_hint">Enter characters more than 3</string>
+    <string name="txt_input_hint">Enter more than 3 characters </string>
 
 </resources>

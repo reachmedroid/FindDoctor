@@ -5,14 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.Models.DoctorsFeed;
-import com.example.myapplication.Models.PaginationItem;
 import com.example.myapplication.R;
-
 import java.util.List;
 
 public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

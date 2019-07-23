@@ -7,7 +7,6 @@ import java.util.List;
 public class SearchResultResponse {
 
 
-    public String refreshToken;
     @SerializedName("doctors")
     public List<DoctorsFeed> doctorsList;
     @SerializedName("lastKey")
