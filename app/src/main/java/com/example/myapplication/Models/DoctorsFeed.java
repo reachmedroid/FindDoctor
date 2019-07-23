@@ -7,9 +7,10 @@ public class DoctorsFeed {
     String photoId;
     String rating;
 
-    public DoctorsFeed( String name,String address) {
+    public DoctorsFeed( String name,String address,String photoId) {
         this.address = address;
         this.name = name;
+        this.photoId=photoId;
     }
 
 

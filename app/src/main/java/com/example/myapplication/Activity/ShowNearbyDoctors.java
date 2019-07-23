@@ -48,16 +48,11 @@ public class ShowNearbyDoctors  extends AppCompatActivity {
             bottomProgressBar.setVisibility(View.GONE);
             if (response.isSuccessful()) {
                 Log.e("Response Successful: ", " "+response.body().doctorsList);
-                Log.e("Response Size: ", " "+response.body().doctorsList.size()+
-                        " isEmpty ? "+response.body().doctorsList.isEmpty());
-
-
-
                 nextDataKey=response.body().nextKey;
                 if(response.body().doctorsList.size()>0) {
                     List<DoctorsFeed> body = response.body().doctorsList;
                     for (DoctorsFeed repo : body) {
-                        values.add(new DoctorsFeed(repo.getName(), repo.getAddress()));
+                        values.add(new DoctorsFeed(repo.getName(), repo.getAddress(),repo.getPhotoId()));
                     }
                     recyclerViewAdapter.notifyDataSetChanged();
                     isLoading = false;
