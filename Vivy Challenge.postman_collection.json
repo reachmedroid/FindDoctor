@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "86448258-16a8-401a-b514-ab381d9aa32e",
+		"name": "Vivy Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://auth.staging.vivy.com/oauth/token?grant_type=password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic aXBob25lOmlwaG9uZXdpbGxub3RiZXRoZXJlYW55bW9yZQ=="
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "androidChallenge@vivy.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "88888888",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://auth.staging.vivy.com/oauth/token?grant_type=password",
+					"protocol": "https",
+					"host": [
+						"auth",
+						"staging",
+						"vivy",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.staging.vivy.com/api/users/me/doctors?search=Fritzhof&lat=52.534709&lng=13.3976972",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhbmRyb2lkQ2hhbGxlbmdlQHZpdnkuY29tIiwic3R5cGUiOiJVU0VSIiwic2NvcGUiOlsiYmFzaWMiXSwiaWQiOiJlY2I3NDBlNS0wNzMxLTQ3ZWEtODAyNC03YzFjYTlhZWQzMjciLCJleHAiOjE1NjM4OTk3NDksImp0aSI6IjczNjA2ZTViLTVkZDAtNDczZC1iM2RkLTVkYjQwNTViZjRjZCIsImNsaWVudF9pZCI6ImlwaG9uZSJ9.3pL08ZojGz_y1o95n3MYOQeYG_99iqZFjpBw93bM1V0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Authorization:",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhbmRyb2lkQ2hhbGxlbmdlQHZpdnkuY29tIiwic3R5cGUiOiJVU0VSIiwic2NvcGUiOlsiYmFzaWMiXSwiaWQiOiJlY2I3NDBlNS0wNzMxLTQ3ZWEtODAyNC03YzFjYTlhZWQzMjciLCJleHAiOjE1NjM2NDE1NjksImp0aSI6ImQ1MWFkNGRhLTgxYjktNDFiMi04OWM5LWYyODk5ZWViZDU4NyIsImNsaWVudF9pZCI6ImlwaG9uZSJ9.iNXM4geScH-7dXTv9-bLEAcl36XlRhSd5rfThXI27Lw",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.staging.vivy.com/api/doctors/ChIJn7Tyi-sOvUcR46JrwAKHApA/keys/profilepictures?=CmRaAAAAiiClNgBBOJdAjCJ4vupUpNP_6wPknF2L7ZlHggKNYhXPyNpg1_PMIAt6YuKakWZCXDBkX4YruoHlu0IbdukEuhpaywuP4Rby9i7OhmjfvexZZQbjLmnMohJI9Kyx2PfREhBmPsZLKrrG--_HhPopHPkrGhSmdWDoqjnKRT6IcTQT7s2J-L9OiA&name=Herr%20Dr.%20Frithjof%20Meister",
+					"protocol": "https",
+					"host": [
+						"api",
+						"staging",
+						"vivy",
+						"com"
+					],
+					"path": [
+						"api",
+						"doctors",
+						"ChIJn7Tyi-sOvUcR46JrwAKHApA",
+						"keys",
+						"profilepictures"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Fritzhof",
+							"disabled": true
+						},
+						{
+							"key": "lat",
+							"value": "52.534709",
+							"disabled": true
+						},
+						{
+							"key": "lng",
+							"value": "13.3976972",
+							"disabled": true
+						},
+						{
+							"key": "lastkey",
+							"value": "CpQEDQIAAF4WdtZQjJrgeJ6Lxbn6y-K8AX-ivLcii6dfhFSSkaZUJriRPmfgZFgnDmT_FfPfJnye5__CyOx5LKcscMWophhajIyAXtKdtMG4zw9MZ9RGCWYwKFOXlYLxiaDnuqfvInS5wc3ZhDK3hrvIvVwfsaSADYWWvQ_HHZenCV_F9-NZY3hJ6dsQJ8qbDg6N17pIEzM1rC6XBg8YuyvqamYvqEiVRkjCzuWI6exGW1y9vnMZ4EskWR7RkRbqUXFli-gLzF-Ph8dI6yXXhhXrioOcruBldSla3k-zMv9AcDLSED61fsGs82kdK8nxNofIJRry9tuIPQmv6nVBBobo-D2HMBenWtYFp09BWR7o_m2plfjbylaNKuqNcAMAQSYC7UACdhX3ByjesC7W0CaRnKR34UI2XxiCXEjXaQPseDdVgTgoMSCd88c0dgnUlXT7sAsbaNNqWxaqlMQqluYRetsGjFb62DwmsttGVopx3Mb8pMd6o5TJwXI6ofJngqDfqYsJowmicGjbnCioKWeS1jNHuOSeNq-7QOBE3RtlB_YIrr6MXGpu4-4iqPcpXEmWlrBrIcPFc54_v-nG6egYwQ-ZIorBI8FYsZCvjS8xRsXRfvqYMLbt1jmPWROAxa4dV2E-8YH7TkQvIvEIMQ-x4BIAIvphSRaX-5h6TvgnW_kT9T--KfV9I7go1Q6PZsxadZhsGRIQuXMYSTOhjnUN3LPv9f5WZRoUbu96qBbYK_smjax7Y6-ZQYjx6l8",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "CmRaAAAAiiClNgBBOJdAjCJ4vupUpNP_6wPknF2L7ZlHggKNYhXPyNpg1_PMIAt6YuKakWZCXDBkX4YruoHlu0IbdukEuhpaywuP4Rby9i7OhmjfvexZZQbjLmnMohJI9Kyx2PfREhBmPsZLKrrG--_HhPopHPkrGhSmdWDoqjnKRT6IcTQT7s2J-L9OiA"
+						},
+						{
+							"key": "name",
+							"value": "Herr%20Dr.%20Frithjof%20Meister"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.staging.vivy.com/api/users/me/doctors?search=Fritzhof&lat=52.534709&lng=13.3976972",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhbmRyb2lkQ2hhbGxlbmdlQHZpdnkuY29tIiwic3R5cGUiOiJVU0VSIiwic2NvcGUiOlsiYmFzaWMiXSwiaWQiOiJlY2I3NDBlNS0wNzMxLTQ3ZWEtODAyNC03YzFjYTlhZWQzMjciLCJleHAiOjE1NjM4OTk3NDksImp0aSI6IjczNjA2ZTViLTVkZDAtNDczZC1iM2RkLTVkYjQwNTViZjRjZCIsImNsaWVudF9pZCI6ImlwaG9uZSJ9.3pL08ZojGz_y1o95n3MYOQeYG_99iqZFjpBw93bM1V0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Authorization:",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhbmRyb2lkQ2hhbGxlbmdlQHZpdnkuY29tIiwic3R5cGUiOiJVU0VSIiwic2NvcGUiOlsiYmFzaWMiXSwiaWQiOiJlY2I3NDBlNS0wNzMxLTQ3ZWEtODAyNC03YzFjYTlhZWQzMjciLCJleHAiOjE1NjM2NDE1NjksImp0aSI6ImQ1MWFkNGRhLTgxYjktNDFiMi04OWM5LWYyODk5ZWViZDU4NyIsImNsaWVudF9pZCI6ImlwaG9uZSJ9.iNXM4geScH-7dXTv9-bLEAcl36XlRhSd5rfThXI27Lw",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.staging.vivy.com/api/doctors/ChIJn7Tyi-sOvUcR46JrwAKHApA/keys/profilepictures?=CmRaAAAAiiClNgBBOJdAjCJ4vupUpNP_6wPknF2L7ZlHggKNYhXPyNpg1_PMIAt6YuKakWZCXDBkX4YruoHlu0IbdukEuhpaywuP4Rby9i7OhmjfvexZZQbjLmnMohJI9Kyx2PfREhBmPsZLKrrG--_HhPopHPkrGhSmdWDoqjnKRT6IcTQT7s2J-L9OiA&name=Herr%20Dr.%20Frithjof%20Meister",
+					"protocol": "https",
+					"host": [
+						"api",
+						"staging",
+						"vivy",
+						"com"
+					],
+					"path": [
+						"api",
+						"doctors",
+						"ChIJn7Tyi-sOvUcR46JrwAKHApA",
+						"keys",
+						"profilepictures"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Fritzhof",
+							"disabled": true
+						},
+						{
+							"key": "lat",
+							"value": "52.534709",
+							"disabled": true
+						},
+						{
+							"key": "lng",
+							"value": "13.3976972",
+							"disabled": true
+						},
+						{
+							"key": "lastkey",
+							"value": "CpQEDQIAAF4WdtZQjJrgeJ6Lxbn6y-K8AX-ivLcii6dfhFSSkaZUJriRPmfgZFgnDmT_FfPfJnye5__CyOx5LKcscMWophhajIyAXtKdtMG4zw9MZ9RGCWYwKFOXlYLxiaDnuqfvInS5wc3ZhDK3hrvIvVwfsaSADYWWvQ_HHZenCV_F9-NZY3hJ6dsQJ8qbDg6N17pIEzM1rC6XBg8YuyvqamYvqEiVRkjCzuWI6exGW1y9vnMZ4EskWR7RkRbqUXFli-gLzF-Ph8dI6yXXhhXrioOcruBldSla3k-zMv9AcDLSED61fsGs82kdK8nxNofIJRry9tuIPQmv6nVBBobo-D2HMBenWtYFp09BWR7o_m2plfjbylaNKuqNcAMAQSYC7UACdhX3ByjesC7W0CaRnKR34UI2XxiCXEjXaQPseDdVgTgoMSCd88c0dgnUlXT7sAsbaNNqWxaqlMQqluYRetsGjFb62DwmsttGVopx3Mb8pMd6o5TJwXI6ofJngqDfqYsJowmicGjbnCioKWeS1jNHuOSeNq-7QOBE3RtlB_YIrr6MXGpu4-4iqPcpXEmWlrBrIcPFc54_v-nG6egYwQ-ZIorBI8FYsZCvjS8xRsXRfvqYMLbt1jmPWROAxa4dV2E-8YH7TkQvIvEIMQ-x4BIAIvphSRaX-5h6TvgnW_kT9T--KfV9I7go1Q6PZsxadZhsGRIQuXMYSTOhjnUN3LPv9f5WZRoUbu96qBbYK_smjax7Y6-ZQYjx6l8",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "CmRaAAAAiiClNgBBOJdAjCJ4vupUpNP_6wPknF2L7ZlHggKNYhXPyNpg1_PMIAt6YuKakWZCXDBkX4YruoHlu0IbdukEuhpaywuP4Rby9i7OhmjfvexZZQbjLmnMohJI9Kyx2PfREhBmPsZLKrrG--_HhPopHPkrGhSmdWDoqjnKRT6IcTQT7s2J-L9OiA"
+						},
+						{
+							"key": "name",
+							"value": "Herr%20Dr.%20Frithjof%20Meister"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
