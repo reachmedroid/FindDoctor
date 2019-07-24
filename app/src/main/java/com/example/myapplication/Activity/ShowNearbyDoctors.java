@@ -52,7 +52,7 @@ public class ShowNearbyDoctors  extends AppCompatActivity {
                 if(response.body().doctorsList.size()>0) {
                     List<DoctorsFeed> body = response.body().doctorsList;
                     for (DoctorsFeed repo : body) {
-                        values.add(new DoctorsFeed(repo.getName(), repo.getAddress(),repo.getPhotoId()));
+                        values.add(new DoctorsFeed(repo.getName(), repo.getAddress(),repo.getPhotoId(),repo.getDoctorID()));
                     }
                     recyclerViewAdapter.notifyDataSetChanged();
                     isLoading = false;
@@ -104,7 +104,7 @@ public class ShowNearbyDoctors  extends AppCompatActivity {
     private void initAdapter() {
         bottomProgressBar = findViewById(R.id.progressBarLoading);
         recyclerView = findViewById(R.id.rv_doctorResult);
-        recyclerViewAdapter = new SearchResultViewAdapter(values);
+        recyclerViewAdapter = new SearchResultViewAdapter(ShowNearbyDoctors.this,values);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 

@@ -7,10 +7,19 @@ public class DoctorsFeed {
     String photoId;
     String rating;
 
-    public DoctorsFeed( String name,String address,String photoId) {
+    public String getDoctorID() {
+        return id ;
+    }
+
+
+    String id;
+
+    public DoctorsFeed( String name,String address,String photoId,String doctorID) {
+
         this.address = address;
         this.name = name;
         this.photoId=photoId;
+        this.id=doctorID;
     }
 
 

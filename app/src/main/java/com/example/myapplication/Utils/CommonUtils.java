@@ -8,6 +8,9 @@ public class CommonUtils
 
     public static final String BASE_URL = "https://api.staging.vivy.com/";
     public static final String OATH_URL = "https://auth.staging.vivy.com/";
+    public static final String PROFILE_URL="/keys/profilepictures?name=";
+    public static final String DOCTOR_URL="api/doctors/";
+
     public static final String BASIC_AUTH_CHALLENGE="aXBob25lOmlwaG9uZXdpbGxub3RiZXRoZXJlYW55bW9yZQ==";
     public static final String USER_NAME="androidChallenge@vivy.com";
     public static final String PASSWORD="88888888";

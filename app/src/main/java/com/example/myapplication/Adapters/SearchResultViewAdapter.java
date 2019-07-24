@@ -1,14 +1,27 @@
 package com.example.myapplication.Adapters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.Headers;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.myapplication.Models.DoctorsFeed;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.CommonUtils;
+
+import java.net.URLEncoder;
 import java.util.List;
 
 public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -18,10 +31,10 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private final int VIEW_TYPE_LOADING = 1;
 
     public List<DoctorsFeed> mItemList;
-
-    public SearchResultViewAdapter(List<DoctorsFeed> itemList) {
-
-        mItemList = itemList;
+    private Context context;
+    public SearchResultViewAdapter(Context context, List<DoctorsFeed> itemList) {
+        this.mItemList = itemList;
+        this.context=context;
     }
 
     @NonNull
@@ -68,11 +81,13 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         TextView tvItem;
         TextView tvDoctorAddress;
+        ImageView imgProfilePicture;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             tvItem = itemView.findViewById(R.id.tvDoctorName);
             tvDoctorAddress= itemView.findViewById(R.id.tvDoctorAddress);
+            imgProfilePicture= itemView.findViewById(R.id.profile_image);
         }
     }
 
@@ -91,14 +106,30 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     }
 
+
+
     private void populateItemRows(ItemViewHolder viewHolder, int position) {
 
         viewHolder.tvItem.setText(mItemList.get(position).getName());
         viewHolder.tvDoctorAddress.setText(mItemList.get(position).getAddress());
+            GlideUrl glideUrl = new GlideUrl(CommonUtils.BASE_URL + CommonUtils.DOCTOR_URL
+                    + mItemList.get(position).getDoctorID()
+                    + CommonUtils.PROFILE_URL +  mItemList.get(position).getName().replaceAll(" ", "%20"),
+                    new LazyHeaders.Builder()
+                            .addHeader("Authorization", "Bearer " + getCurrentAccessToken())
+                            .addHeader("Content-type","application/x-www-form-urlencoded")
+                            .build());
 
-
-
+            Glide.with(context)
+                    .load(glideUrl)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .thumbnail(0.2f)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .into(viewHolder.imgProfilePicture);
     }
 
-
+    private String getCurrentAccessToken(){
+        SharedPreferences pref = context.getApplicationContext().getSharedPreferences(CommonUtils.PREFERENCE_FILE, 0);
+        return pref.getString(CommonUtils.SAVED_ACCESS_NAME,"");
+    }
 }

@@ -48,7 +48,7 @@ public interface APIService {
      * @return SearchResultResponse
      */
 
-    @GET("api/doctors/{doctor-id}//keys/profilepictures?")
+    @GET("api/doctors/{doctor-id}/keys/profilepictures?")
     Call<SearchResultResponse> fetchProfilePicture(@Path("doctor-id") String doctorID,
                                                     @Query("name") String doctorName);
 
