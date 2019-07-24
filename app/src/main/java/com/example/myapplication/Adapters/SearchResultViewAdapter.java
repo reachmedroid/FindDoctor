@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.Headers;
 import com.bumptech.glide.load.model.LazyHeaders;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.myapplication.Models.DoctorsFeed;
 import com.example.myapplication.R;
 import com.example.myapplication.Utils.CommonUtils;
@@ -124,6 +125,7 @@ public class SearchResultViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     .load(glideUrl)
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .thumbnail(0.2f)
+                    .apply(RequestOptions.circleCropTransform())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(viewHolder.imgProfilePicture);
     }
